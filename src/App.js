@@ -1,23 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import claaroNutriLogo from "./img/logo3.png"
+import Boton from "./componentes/Boton"
+import Contador from './componentes/Contador';
+import { useState } from 'react';
 
 function App() {
+
+  const [numClicks, setnumClicks]= useState(0)
+
+  const manejarClick=()=>{
+    setnumClicks(numClicks + 1)
+  }
+
+    const reiniciarContador=()=>{
+      setnumClicks(0)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="freecodecamp-logo-contenedor">
+        <img src={claaroNutriLogo} className="free-codecamp-logo" alt="logo-freecodecamp" />
+      </div>
+      <div className="contenedor-principal">
+        <div className="contenedor-contador">
+        <Contador numClicks={ numClicks }/>
+        </div>
+        <div className="contenedor-botones">
+        <Boton
+        texto="Click"
+        esBotonClick={ true }
+        manejarClick={ manejarClick }
+        />
+        <Boton
+        texto="Reiniciar"
+        esBotonClick={ false }
+        manejarClick={ reiniciarContador }
+        />
+        </div>
+      </div>
     </div>
   );
 }
